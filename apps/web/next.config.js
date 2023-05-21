@@ -6,7 +6,9 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["ui"],
-  appDir: true,
+  experiments: {
+    appDir: true,
+  },
 };
 
 module.exports = withVanillaExtract(nextConfig);
