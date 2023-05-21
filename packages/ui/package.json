@@ -35,5 +35,8 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "dependencies": {
+    "@vanilla-extract/css": "^1.11.0"
   }
 }
