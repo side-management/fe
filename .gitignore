@@ -5,3 +5,4 @@ storybook-static
 .vercel
 .DS_Store
 .env
+.turbo
