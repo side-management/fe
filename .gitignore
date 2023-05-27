@@ -6,3 +6,4 @@ storybook-static
 .DS_Store
 .env
 .turbo
+dist

@@ -1,13 +1,12 @@
 "use client";
-
-import { ReactNode } from "react";
+import * as React from "react";
 
 export const Button = ({
   children,
   leftSlot,
 }: {
-  children: ReactNode;
-  leftSlot: ReactNode;
+  children: React.ReactNode;
+  leftSlot: React.ReactNode;
 }) => {
   return (
     <button onClick={() => alert("boop")}>
