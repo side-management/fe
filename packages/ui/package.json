@@ -1,10 +1,11 @@
 {
   "name": "ui",
   "version": "0.0.0",
-  "main": "./src/index.tsx",
-  "types": "./src/index.tsx",
+  "main": "dist/index.js",
+  "types": "dist/types/src/index.d.ts",
   "license": "MIT",
   "scripts": {
+    "build": "rollup -c",
     "lint": "eslint \"**/*.ts*\"",
     "generate:component": "turbo gen react-component",
     "storybook": "storybook dev -p 6006",
@@ -29,7 +30,8 @@
     "storybook": "^7.0.18",
     "tsconfig": "workspace:*",
     "typescript": "^5.0.4",
-    "vite": "^4.3.9"
+    "vite": "^4.3.8",
+    "rollup-config": "workspace:*"
   },
   "eslintConfig": {
     "extends": [

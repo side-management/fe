@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <>
       <Header text="Web" />
-      <Button />
+      <Button leftSlot={<div>left</div>}>button</Button>
     </>
   );
 }
