@@ -5,7 +5,7 @@
   "types": "dist/types/src/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rollup --config --bundleConfigAsCjs",
+    "build": "rollup -c",
     "lint": "eslint \"**/*.ts*\"",
     "generate:component": "turbo gen react-component",
     "storybook": "storybook dev -p 6006",
@@ -30,7 +30,9 @@
     "storybook": "^7.0.12",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2",
-    "vite": "^4.3.8"
+    "vite": "^4.3.8",
+    "rollup-config": "workspace:*",
+    "rollup": "^3.23.0"
   },
   "eslintConfig": {
     "extends": [
@@ -38,10 +40,6 @@
     ]
   },
   "dependencies": {
-    "@rollup/plugin-typescript": "^11.1.1",
-    "@vanilla-extract/css": "^1.11.0",
-    "rollup": "^3.23.0",
-    "rollup-plugin-esbuild": "^5.0.0",
-    "rollup-plugin-preserve-directives": "^0.1.1"
+    "@vanilla-extract/css": "^1.11.0"
   }
 }
