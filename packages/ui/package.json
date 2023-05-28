@@ -29,10 +29,9 @@
     "react-dom": "^18.2.0",
     "storybook": "^7.0.18",
     "tsconfig": "workspace:*",
-    "typescript": "^4.5.2",
+    "typescript": "^5.0.4",
     "vite": "^4.3.8",
-    "rollup-config": "workspace:*",
-    "rollup": "^3.23.0"
+    "rollup-config": "workspace:*"
   },
   "eslintConfig": {
     "extends": [
