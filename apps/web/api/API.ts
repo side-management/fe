@@ -61,7 +61,17 @@ class API {
     this.middleware.push(middleware);
   }
 
-  get<T>(url: string, options: RequestInit) {
+  get<T>(
+    url: string,
+    params: Record<string, unknown> = {},
+    options: RequestInit = {}
+  ) {
+    const entries = Object.entries(params).map(([key, value]) => [
+      key,
+      JSON.stringify(value),
+    ]);
+    const searchParams = new URLSearchParams(entries).toString();
+
     const apiOptions = {
       ...this.defaultOptions,
       ...options,
@@ -69,10 +79,14 @@ class API {
       signal: this.signal,
     };
 
-    return this.apiCall<T>(url, apiOptions);
+    return this.apiCall<T>(`${url}?${searchParams}`, apiOptions);
   }
 
-  post<T>(url: string, body: Record<string, unknown>, options: RequestInit) {
+  post<T>(
+    url: string,
+    body: Record<string, unknown> = {},
+    options: RequestInit = {}
+  ) {
     const apiOptions = {
       ...this.defaultOptions,
       ...options,
