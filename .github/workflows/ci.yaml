@@ -23,12 +23,13 @@ jobs:
         uses: felixmosh/turborepo-gh-artifacts@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          server-token: ${{ secrets.TURBO_SERVER_TOKEN }}
 
       # - name: Lint
       #   run: pnpm lint --api="http://127.0.0.1:9080" --team="side-management"
 
       - name: Build
-        run: pnpm build --api="http://127.0.0.1:9080" --team="side-management"
+        run: pnpm build --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="side-management"
 
       - name: Type check
-        run: pnpm type-check --api="http://127.0.0.1:9080" --team="side-management"
+        run: pnpm type-check --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="side-management"
