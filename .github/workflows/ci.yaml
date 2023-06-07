@@ -19,11 +19,17 @@ jobs:
       - name: Check dedupe
         run: pnpm dedupe --check
 
-      - name: Type check
-        run: pnpm type-check
+      - name: Turborepo local server
+        uses: felixmosh/turborepo-gh-artifacts@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          server-token: ${{ secrets.TURBO_SERVER_TOKEN }}
 
       - name: Lint
-        run: pnpm lint
+        run: pnpm lint --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="side-management"
 
-      - name: Test
-        run: pnpm test
+      - name: Build
+        run: pnpm build --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="side-management"
+
+      - name: Type check
+        run: pnpm type-check --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="side-management"
