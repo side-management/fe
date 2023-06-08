@@ -10,7 +10,7 @@ export const Button = ({
   leftSlot: ReactNode;
 }) => {
   return (
-    <button onClick={() => alert("boop")}>
+    <button onClick={() => {}}>
       {leftSlot}
       <span>{children}</span>
     </button>
