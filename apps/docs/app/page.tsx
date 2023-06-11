@@ -1,10 +1,12 @@
 import { Button, Header } from "ui";
 
-export default function Page() {
+const Page = () => {
   return (
     <>
       <Header text="Docs" />
       <Button leftSlot={<div>left</div>}>button</Button>
     </>
   );
-}
+};
+
+export default Page;

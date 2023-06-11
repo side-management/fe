@@ -1,11 +1,23 @@
 module.exports = {
-  extends: ["next", "turbo", "prettier"],
+  extends: ["next", "turbo", "airbnb", "plugin:prettier/recommended"],
   rules: {
-    "@next/next/no-html-link-for-pages": "off",
+    "import/export": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "react/button-has-type": "off",
+    "react/function-component-definition": [
+      2,
+      { namedComponents: "arrow-function" },
+    ],
+    "react/jsx-filename-extension": [2, { extensions: [".ts", ".tsx"] }],
+    "react-hooks/exhaustive-deps": [
+      "error",
+      {
+        additionalHooks: "(useCustomHook)",
+      },
+    ],
   },
-  parserOptions: {
-    babelOptions: {
-      presets: [require.resolve("next/babel")],
-    },
-  },
+  ignorePatterns: ["**/dist/**/*"],
 };
