@@ -11,7 +11,7 @@ export const Button = ({
   leftSlot: ReactNode;
 }) => {
   return (
-    <button onClick={() => alert("boop")} className={buttonStyle}>
+    <button onClick={() => {}} className={buttonStyle}>
       {leftSlot}
       <span>{children}</span>
     </button>
