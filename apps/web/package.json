@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build-app": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,7 +13,8 @@
     "next": "^13.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ui": "workspace:*"
+    "ui": "workspace:*",
+    "utils": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",

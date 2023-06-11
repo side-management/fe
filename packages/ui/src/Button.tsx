@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { buttonStyle } from "./Button.css";
 
 export const Button = ({
   children,
@@ -10,7 +11,7 @@ export const Button = ({
   leftSlot: ReactNode;
 }) => {
   return (
-    <button onClick={() => {}}>
+    <button onClick={() => {}} className={buttonStyle}>
       {leftSlot}
       <span>{children}</span>
     </button>
