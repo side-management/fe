@@ -1,0 +1,27 @@
+{
+  "name": "utils",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "dependencies": {
+    "ts-pattern": "^4.3.0",
+    "ts-toolbelt": "^9.6.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "rollup-config": "workspace:*",
+    "tsconfig": "workspace:*"
+  }
+}

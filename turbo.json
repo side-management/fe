@@ -4,10 +4,14 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".dist/**"]
     },
     "build-storybook": {
       "outputs": ["./storybook-static/**"]
+    },
+    "build-app": {
+      "dependsOn": ["^build", "^build-app"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
     "test": {},
