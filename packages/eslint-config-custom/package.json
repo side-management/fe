@@ -10,6 +10,9 @@
     "eslint-config-turbo": "^1.9.9",
     "eslint-plugin-prettier": "^4.2.1"
   },
+  "peerDependencies": {
+    "eslint-config-airbnb": "^19.0.4"
+  },
   "publishConfig": {
     "access": "public"
   }

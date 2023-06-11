@@ -10,10 +10,7 @@ module.exports = {
       2,
       { namedComponents: "arrow-function" },
     ],
-    "react/jsx-filename-extension": [
-      2,
-      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
-    ],
+    "react/jsx-filename-extension": [2, { extensions: [".ts", ".tsx"] }],
     "react-hooks/exhaustive-deps": [
       "error",
       {
