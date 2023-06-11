@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
-import { Middleware } from "./interfaces";
+import { ModifyHeaders } from "api";
 
-export const addAuthorizationHeader: Middleware = ({ options }) => {
+export const addAuthorizationHeader: ModifyHeaders = ({ options }) => {
   const session = cookies().get("session");
 
   const requestOptions = session

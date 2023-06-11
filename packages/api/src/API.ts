@@ -1,37 +1,29 @@
-import { Middleware, OnRequestSuccess } from "./interfaces";
-import { addAuthorizationHeader } from "./middleware";
+import { ModifyHeaders, ModifyResponse } from "./interfaces";
 
-class API {
-  controller: AbortController;
-  signal: AbortSignal;
-  baseUrl: string;
-  defaultOptions: RequestInit;
-  middleware: Array<Middleware>;
-  _onRequestSuccess?: OnRequestSuccess;
+export class API {
+  private baseUrl: string;
+  private defaultOptions: RequestInit;
+  private modifyHeaders: Array<ModifyHeaders>;
+  private modifyResponse?: ModifyResponse;
 
-  constructor(baseUrl: string, defaultOptions: RequestInit) {
-    this.controller = new AbortController();
-    this.signal = this.controller.signal;
-
+  constructor(baseUrl: string, defaultOptions: RequestInit = {}) {
     this.baseUrl = baseUrl;
     this.defaultOptions = defaultOptions;
-    this.middleware = [];
-
-    this.use(addAuthorizationHeader);
+    this.modifyHeaders = [];
   }
 
-  private applyMiddleware(url: string, options: RequestInit) {
+  private applyModifyHeaders(url: string, options: RequestInit) {
     let modifiedOptions = options;
 
-    this.middleware.forEach((middleware) => {
-      modifiedOptions = middleware({ url, options: modifiedOptions });
+    this.modifyHeaders.forEach((modifyHeaders) => {
+      modifiedOptions = modifyHeaders({ url, options: modifiedOptions });
     });
 
     return modifiedOptions;
   }
 
-  private applyOnRequestSuccess<T>(response: T) {
-    const modifiedResponse = this._onRequestSuccess?.<T>(response);
+  private applyModifyResponse<T>(response: T) {
+    const modifiedResponse = this.modifyResponse?.<T>(response);
 
     const responseWithSuccess = modifiedResponse || response;
 
@@ -39,7 +31,7 @@ class API {
   }
 
   private async apiCall<T>(url: string, options: RequestInit) {
-    const modifiedOptions = this.applyMiddleware(url, options);
+    const modifiedOptions = this.applyModifyHeaders(url, options);
 
     const requestUrl = url.startsWith("/") ? url : `/${url}`;
 
@@ -50,15 +42,26 @@ class API {
 
     if (!response.ok) throw new Error(response.statusText);
 
-    return this.applyOnRequestSuccess((await response.json()) as T);
+    const responseWithSuccess = (await response.json()) as T extends {
+      error: string;
+    }
+      ? T
+      : T & { error: string };
+
+    // TODO: 에러 처리
+    if (responseWithSuccess.error) {
+      throw new Error(responseWithSuccess.error);
+    }
+
+    return this.applyModifyResponse(responseWithSuccess);
   }
 
-  onRequestSuccess(onRequestSuccess: OnRequestSuccess) {
-    this._onRequestSuccess = onRequestSuccess;
+  useModifyResponse(modifyResponse: ModifyResponse) {
+    this.modifyResponse = modifyResponse;
   }
 
-  use(middleware: Middleware) {
-    this.middleware.push(middleware);
+  useModifyHeaders(modifyHeaders: ModifyHeaders) {
+    this.modifyHeaders.push(modifyHeaders);
   }
 
   get<T>(
@@ -76,7 +79,6 @@ class API {
       ...this.defaultOptions,
       ...options,
       method: "GET",
-      signal: this.signal,
     };
 
     return this.apiCall<T>(`${url}?${searchParams}`, apiOptions);
@@ -92,11 +94,8 @@ class API {
       ...options,
       method: "POST",
       body: JSON.stringify(body),
-      signal: this.signal,
     };
 
     return this.apiCall<T>(url, apiOptions);
   }
 }
-
-export default API;
