@@ -1,4 +1,11 @@
-import { ModifyHeaders, ModifyResponse } from "./interfaces";
+import {
+  HttpsString,
+  HttpString,
+  ModifyHeaders,
+  ModifyResponse,
+} from "./interfaces";
+
+const httpUrlRegex = /^(http|https):\/\/[^ "]+$/;
 
 export class API {
   private baseUrl: string;
@@ -6,7 +13,13 @@ export class API {
   private modifyHeaders: Array<ModifyHeaders>;
   private modifyResponse?: ModifyResponse;
 
-  constructor(baseUrl: string, defaultOptions: RequestInit = {}) {
+  constructor(
+    baseUrl: HttpString | HttpsString,
+    defaultOptions: RequestInit = {}
+  ) {
+    if (httpUrlRegex.test(baseUrl) === false)
+      throw new Error("Invalid base URL");
+
     this.baseUrl = baseUrl;
     this.defaultOptions = defaultOptions;
     this.modifyHeaders = [];
