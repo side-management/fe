@@ -1,6 +1,5 @@
-const rollupConfig = require("rollup-config");
+import { getRollupConfig } from "rollup-config";
 
-module.exports = {
-  ...rollupConfig,
+export default getRollupConfig({
   input: "./src/index.ts",
-};
+});
