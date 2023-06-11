@@ -7,7 +7,6 @@ const Page = () => {
     .with({ a: "2", b: "test" }, () => "2")
     .otherwise(() => "3");
 
-  console.log(a);
   return (
     <>
       <Header text="Web" />
