@@ -103,7 +103,14 @@ importers:
         specifier: ^5.0.4
         version: 5.0.4
 
-  packages/api: {}
+  packages/api:
+    devDependencies:
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      rollup-config:
+        specifier: workspace:*
+        version: link:../rollup-config
 
   packages/eslint-config-custom:
     dependencies:
