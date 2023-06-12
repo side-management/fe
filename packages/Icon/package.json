@@ -6,8 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
-    "svg": "npx @svgr/cli ./svgs --typescript --out-dir src && pnpm turbo run build --filter=icon"
+    "build": "npx @svgr/cli ./svgs --typescript --out-dir src && rollup -c"
   },
   "devDependencies": {
     "@svgr/rollup": "^8.0.1",
