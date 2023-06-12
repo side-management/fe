@@ -9,14 +9,7 @@
     "build": "npx @svgr/cli ./svgs --typescript --out-dir src && rollup -c"
   },
   "devDependencies": {
-    "@svgr/rollup": "^8.0.1",
     "@types/react": "^18.2.7",
-    "@types/react-dom": "^18.2.4",
-    "eslint": "^8.41.0",
-    "eslint-config-custom": "workspace:*",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rollup-config": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^5.0.4"
